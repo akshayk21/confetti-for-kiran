@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiran at 30</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #fbf4ed;
+            color: #1c1917;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .header-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-icon svg { width: 16px; height: 16px; color: #e11d48; }
+
+        .header-title { font-size: 0.875rem; font-weight: 600; color: #44403c; }
+        .header-subtitle { font-size: 0.75rem; color: #78716c; }
+
+        .btn {
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            border: 1px solid #e7e5e4;
+            background: white;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #44403c;
+        }
+
+        .btn:hover { background: #f5f5f4; border-color: #d6d3d1; }
+
+        .btn-dark {
+            background: #1c1917;
+            color: white;
+            border-color: #1c1917;
+            padding: 0.75rem 1.75rem;
+            font-size: 1rem;
+        }
+
+        .btn-dark:hover { background: #44403c; }
+
+        /* Screens */
+        .screen { display: none; animation: fadeIn 0.35s ease; }
+        .screen.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Landing */
+        .landing-grid {
+            display: grid;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .landing-grid { grid-template-columns: 1.05fr 0.95fr; }
+        }
+
+        .landing-content {
+            background: rgba(255,255,255,0.8);
+            border-radius: 2rem;
+            padding: 2.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .landing-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #fff1f2;
+            color: #be123c;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+        }
+
+        .landing-badge svg { width: 16px; height: 16px; }
+
+        .landing-h1 {
+            font-size: clamp(2.5rem, 5vw, 3.75rem);
+            font-weight: 600;
+            letter-spacing: -0.025em;
+            color: #1c1917;
+            margin-bottom: 1rem;
+        }
+
+        .landing-desc {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: #57534e;
+            margin-bottom: 1.5rem;
+            max-width: 36rem;
+        }
+
+        .landing-note {
+            background: #fff8f2;
+            border-radius: 1rem;
+            padding: 1.25rem;
+            font-size: 0.875rem;
+            line-height: 1.7;
+            color: #57534e;
+            border: 1px solid rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .landing-preview {
+            position: relative;
+        }
+
+        .landing-preview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            background: rgba(255,255,255,0.5);
+            padding: 1rem;
+            border-radius: 2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .preview-card {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .preview-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .preview-card img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+
+        .preview-card-info { padding: 0.75rem; }
+        .preview-card-num { font-size: 0.75rem; font-weight: 600; color: #78716c; }
+        .preview-card-title { font-size: 0.875rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .preview-card-tap { font-size: 0.6875rem; color: #a8a29e; margin-top: 0.25rem; }
+
+        /* Gallery */
+        .gallery-header {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background: rgba(255,255,255,0.75);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        @media (min-width: 640px) {
+            .gallery-header { flex-direction: row; justify-content: space-between; align-items: flex-end; }
+        }
+
+        .gallery-header-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #e11d48;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-header h2 {
+            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        .gallery-header p {
+            margin-top: 0.5rem;
+            color: #78716c;
+            max-width: 36rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 1024px) { .gallery-grid { grid-template-columns: repeat(5, 1fr); } }
+
+        .tile {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            background: white;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+        }
+
+        .tile:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        }
+
+        .tile-img-wrap { position: relative; overflow: hidden; }
+
+        .tile-img-wrap img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .tile:hover .tile-img-wrap img { transform: scale(1.05); }
+
+        .tile-number {
+            position: absolute;
+            top: 0.75rem;
+            left: 0.75rem;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(4px);
+            padding: 0.25rem 0.625rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #44403c;
+        }
+
+        .tile-audio-icon {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(4px);
+            padding: 0.5rem;
+            border-radius: 9999px;
+            color: #44403c;
+        }
+
+        .tile-audio-icon svg { width: 14px; height: 14px; }
+
+        .tile-video-icon {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(4px);
+            padding: 0.5rem;
+            border-radius: 9999px;
+            color: #44403c;
+        }
+
+        .tile-video-icon svg { width: 14px; height: 14px; }
+
+        .tile-info { padding: 0.75rem; }
+
+        .tile-theme {
+            display: inline-block;
+            padding: 0.125rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.625rem;
+            font-weight: 600;
+            margin-bottom: 0.375rem;
+        }
+
+        .tile-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .tile-from { font-size: 0.75rem; color: #78716c; margin-top: 0.25rem; }
+
+        /* Theme colors */
+        .theme-Intro { background: #fff1f2; color: #be123c; }
+        .theme-Family { background: #fef3c7; color: #92400e; }
+        .theme-Friends { background: #fce7f3; color: #9d174d; }
+        .theme-Love { background: #fee2e2; color: #991b1b; }
+        .theme-Mama { background: #ede9fe; color: #5b21b6; }
+        .theme-Blessings { background: #ffedd5; color: #9a3412; }
+
+        /* Card View */
+        .card-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+        }
+
+        .card-nav-counter { font-size: 0.875rem; font-weight: 500; color: #78716c; }
+
+        .card-layout {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .card-layout { grid-template-columns: 0.9fr 1.1fr; align-items: stretch; }
+        }
+
+        .card-photo {
+            background: white;
+            border-radius: 2rem;
+            padding: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .card-photo img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 1.5rem;
+        }
+
+        .card-photo-info { padding: 1rem; }
+        .card-photo-num { font-size: 0.875rem; font-weight: 600; color: #e11d48; }
+        .card-photo-title { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.025em; margin-top: 0.25rem; }
+        .card-photo-from { color: #78716c; margin-top: 0.25rem; }
+
+        .card-message {
+            display: flex;
+            flex-direction: column;
+            background: rgba(255,255,255,0.8);
+            border-radius: 2rem;
+            padding: 1.75rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .card-message-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+        }
+
+        .card-message-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: #e11d48;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-message h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-message-from {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #78716c;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-message-text {
+            font-size: 1.125rem;
+            line-height: 2;
+            color: #44403c;
+            flex: 1;
+        }
+
+        .card-video {
+            margin-top: 2rem;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .card-video-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #44403c;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-video-label svg { width: 16px; height: 16px; color: #e11d48; }
+
+        .card-video video {
+            width: 100%;
+            border-radius: 1rem;
+            display: block;
+        }
+
+        .card-audio {
+            background: #fff8f2;
+            border-radius: 1rem;
+            padding: 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+            margin-top: 2rem;
+        }
+
+        .card-audio-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #44403c;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-audio-label svg { width: 16px; height: 16px; color: #e11d48; }
+
+        .card-audio-player {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-audio-player .btn-dark {
+            padding: 0.5rem 1rem;
+            font-size: 0.8125rem;
+        }
+
+        .card-audio-bar {
+            flex: 1;
+            height: 8px;
+            background: #e7e5e4;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .card-audio-progress {
+            height: 100%;
+            width: 0%;
+            background: #78716c;
+            border-radius: 9999px;
+            transition: width 0.1s linear;
+        }
+
+        .card-audio-time { font-size: 0.75rem; color: #a8a29e; }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.75rem;
+            border-top: 1px solid #e7e5e4;
+            padding-top: 1.25rem;
+            margin-top: 2rem;
+        }
+
+        .card-footer .btn { display: flex; align-items: center; gap: 0.5rem; }
+        .card-footer .btn svg { width: 16px; height: 16px; }
+
+        /* Staggered tile animation */
+        .tile { opacity: 0; animation: fadeIn 0.4s ease forwards; }
+
+        /* Hidden utility */
+        .hidden { display: none !important; }
+
+        @media (max-width: 767px) {
+            .landing-content { padding: 1.5rem; }
+            .landing-h1 { font-size: 2rem; }
+            .card-message h2 { font-size: 1.375rem; }
+            .card-message-text { font-size: 1rem; line-height: 1.8; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <div class="header-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                </div>
+                <div>
+                    <div class="header-title">Kiran at 30</div>
+                    <div class="header-subtitle">A digital memory tile experience</div>
+                </div>
+            </div>
+            <button class="btn" id="navGalleryBtn" style="display:none" onclick="showScreen('gallery')">Gallery</button>
+        </header>
+
+        <!-- Landing Screen -->
+        <main class="screen active" id="screen-landing">
+            <div class="landing-grid">
+                <section class="landing-content">
+                    <div class="landing-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 4.5H18l-3.5 2.5 1.5 4.5L12 12l-4 2.5 1.5-4.5L6 7.5h4.5z"/></svg>
+                        Private birthday memory tiles
+                    </div>
+                    <h1 class="landing-h1">Kiran at 30</h1>
+                    <p class="landing-desc">30 memories from the people who love you most. Tap a tile to open a photo and read what someone wanted you to remember.</p>
+                    <div class="landing-note">This experience pairs every photo with one heartfelt message, with optional voice notes tucked inside selected cards.</div>
+                    <button class="btn btn-dark" onclick="showScreen('gallery')">Open the tiles</button>
+                </section>
+                <section class="landing-preview">
+                    <div class="landing-preview-grid" id="previewGrid"></div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Gallery Screen -->
+        <main class="screen" id="screen-gallery">
+            <section class="gallery-header">
+                <div>
+                    <div class="gallery-header-label">The tile wall</div>
+                    <h2>Choose a memory</h2>
+                    <p>Each square opens into a paired photo-and-message view, like seeing both sides of a tile together.</p>
+                </div>
+                <button class="btn" onclick="showScreen('landing')">Back to start</button>
+            </section>
+            <section class="gallery-grid" id="galleryGrid"></section>
+        </main>
+
+        <!-- Card Screen -->
+        <main class="screen" id="screen-card">
+            <nav class="card-nav">
+                <button class="btn" onclick="showScreen('gallery')">
+                    <span style="display:flex;align-items:center;gap:0.5rem">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                        Close card
+                    </span>
+                </button>
+                <div class="card-nav-counter" id="cardCounter"></div>
+            </nav>
+            <section class="card-layout">
+                <div class="card-photo">
+                    <img id="cardImage" src="" alt="">
+                    <div class="card-photo-info">
+                        <div class="card-photo-num" id="cardNum"></div>
+                        <div class="card-photo-title" id="cardTitle"></div>
+                        <div class="card-photo-from" id="cardFrom"></div>
+                    </div>
+                </div>
+                <div class="card-message">
+                    <div class="card-message-header">
+                        <span class="tile-theme" id="cardThemeBadge"></span>
+                        <span style="font-size:0.875rem;font-weight:600;color:#a8a29e" id="cardNumSmall"></span>
+                    </div>
+                    <div>
+                        <h2 id="cardMsgTitle"></h2>
+                        <div class="card-message-from" id="cardMsgFrom"></div>
+                        <p class="card-message-text" id="cardMsgText"></p>
+                        <div class="card-video hidden" id="cardVideo">
+                            <div class="card-video-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                                <span id="cardVideoLabel"></span>
+                            </div>
+                            <video id="cardVideoPlayer" controls preload="none"></video>
+                        </div>
+                        <div class="card-audio hidden" id="cardAudio">
+                            <div class="card-audio-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14"/></svg>
+                                <span id="cardAudioLabel"></span>
+                            </div>
+                            <div class="card-audio-player">
+                                <button class="btn btn-dark" id="audioPlayBtn" onclick="toggleAudio()">Play</button>
+                                <div class="card-audio-bar"><div class="card-audio-progress" id="audioProgress"></div></div>
+                                <span class="card-audio-time" id="audioTime">0:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn" onclick="prevCard()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                            Previous
+                        </button>
+                        <button class="btn" onclick="nextCard()">
+                            Next
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        let memories = [];
+        let featured = [];
+        let currentIndex = 0;
+        let audioElement = null;
+
+        async function init() {
+            const res = await fetch('data.json');
+            const data = await res.json();
+            memories = data.tiles;
+            featured = data.featured || [];
+            buildPreview();
+            buildGallery();
+        }
+
+        function buildPreview() {
+            const grid = document.getElementById('previewGrid');
+            grid.innerHTML = '';
+            const previewTiles = featured.length > 0
+                ? featured.map(id => memories.find(m => m.id === id)).filter(Boolean)
+                : memories.slice(0, 4);
+            previewTiles.forEach((m) => {
+                const index = memories.indexOf(m);
+                const card = document.createElement('div');
+                card.className = 'preview-card';
+                card.onclick = () => openCard(index);
+                card.innerHTML = `
+                    <img src="images/${m.id}.jpg" alt="${m.title}">
+                    <div class="preview-card-info">
+                        <div class="preview-card-num">#${String(m.id).padStart(2, '0')}</div>
+                        <div class="preview-card-title">${m.title}</div>
+                        <div class="preview-card-tap">Tap to open</div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function buildGallery() {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = '';
+            memories.forEach((m, i) => {
+                const tile = document.createElement('div');
+                tile.className = 'tile';
+                tile.style.animationDelay = `${i * 0.04}s`;
+                tile.onclick = () => openCard(i);
+                tile.innerHTML = `
+                    <div class="tile-img-wrap">
+                        <img src="images/${m.id}.jpg" alt="${m.title}" loading="lazy">
+                        <div class="tile-number">#${String(m.id).padStart(2, '0')}</div>
+                        ${m.audio ? `<div class="tile-audio-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 010 7.07"/></svg></div>` : ''}
+                        ${m.video ? `<div class="tile-video-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>` : ''}
+                    </div>
+                    <div class="tile-info">
+                        <span class="tile-theme theme-${m.theme}">${m.theme}</span>
+                        <div class="tile-title">${m.title}</div>
+                        <div class="tile-from">From ${m.from}</div>
+                    </div>
+                `;
+                grid.appendChild(tile);
+            });
+        }
+
+        function showScreen(name) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(`screen-${name}`).classList.add('active');
+            document.getElementById('navGalleryBtn').style.display = (name === 'landing') ? 'none' : '';
+            if (audioElement) { audioElement.pause(); audioElement = null; }
+            const vp = document.getElementById('cardVideoPlayer');
+            if (vp) { vp.pause(); }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        async function openCard(index) {
+            currentIndex = index;
+            const m = memories[index];
+
+            document.getElementById('cardImage').src = `images/${m.id}.jpg`;
+            document.getElementById('cardNum').textContent = `#${String(m.id).padStart(2, '0')}`;
+            document.getElementById('cardTitle').textContent = m.title;
+            document.getElementById('cardFrom').textContent = `From ${m.from}`;
+            document.getElementById('cardCounter').textContent = `${index + 1} of ${memories.length}`;
+            document.getElementById('cardNumSmall').textContent = `#${String(m.id).padStart(2, '0')}`;
+            document.getElementById('cardMsgTitle').textContent = m.title;
+            document.getElementById('cardMsgFrom').textContent = `From ${m.from}`;
+
+            const themeBadge = document.getElementById('cardThemeBadge');
+            themeBadge.textContent = m.theme;
+            themeBadge.className = `tile-theme theme-${m.theme}`;
+
+            // Load message from file
+            try {
+                const res = await fetch(`messages/${m.id}.txt`);
+                const text = await res.text();
+                document.getElementById('cardMsgText').textContent = text.trim();
+            } catch {
+                document.getElementById('cardMsgText').textContent = m.title;
+            }
+
+            // Video
+            const videoSection = document.getElementById('cardVideo');
+            const videoPlayer = document.getElementById('cardVideoPlayer');
+            if (m.video) {
+                videoSection.classList.remove('hidden');
+                document.getElementById('cardVideoLabel').textContent = `Video from ${m.from}`;
+                videoPlayer.src = `video/${m.id}.mp4`;
+                videoPlayer.load();
+            } else {
+                videoSection.classList.add('hidden');
+                videoPlayer.pause();
+                videoPlayer.removeAttribute('src');
+            }
+
+            // Audio
+            const audioSection = document.getElementById('cardAudio');
+            if (m.audio) {
+                audioSection.classList.remove('hidden');
+                document.getElementById('cardAudioLabel').textContent = `Voice note from ${m.from}`;
+                document.getElementById('audioProgress').style.width = '0%';
+                document.getElementById('audioTime').textContent = '0:00';
+                document.getElementById('audioPlayBtn').textContent = 'Play';
+                if (audioElement) { audioElement.pause(); audioElement = null; }
+                audioElement = new Audio(`audio/${m.id}.mp3`);
+                audioElement.addEventListener('timeupdate', updateAudioProgress);
+                audioElement.addEventListener('ended', () => {
+                    document.getElementById('audioPlayBtn').textContent = 'Play';
+                });
+            } else {
+                audioSection.classList.add('hidden');
+                if (audioElement) { audioElement.pause(); audioElement = null; }
+            }
+
+            showScreen('card');
+        }
+
+        function toggleAudio() {
+            if (!audioElement) return;
+            if (audioElement.paused) {
+                audioElement.play();
+                document.getElementById('audioPlayBtn').textContent = 'Pause';
+            } else {
+                audioElement.pause();
+                document.getElementById('audioPlayBtn').textContent = 'Play';
+            }
+        }
+
+        function updateAudioProgress() {
+            if (!audioElement || !audioElement.duration) return;
+            const pct = (audioElement.currentTime / audioElement.duration) * 100;
+            document.getElementById('audioProgress').style.width = `${pct}%`;
+            const mins = Math.floor(audioElement.currentTime / 60);
+            const secs = Math.floor(audioElement.currentTime % 60).toString().padStart(2, '0');
+            document.getElementById('audioTime').textContent = `${mins}:${secs}`;
+        }
+
+        function nextCard() {
+            openCard((currentIndex + 1) % memories.length);
+        }
+
+        function prevCard() {
+            openCard((currentIndex - 1 + memories.length) % memories.length);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('screen-card').classList.contains('active')) return;
+            if (e.key === 'ArrowRight') nextCard();
+            if (e.key === 'ArrowLeft') prevCard();
+            if (e.key === 'Escape') showScreen('gallery');
+        });
+
+        init();
+    </script>
+</body>
+</html>

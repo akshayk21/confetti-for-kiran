@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(open *)",
+      "Bash(curl -sL https://picsum.photos/seed/__TRACKED_VAR__/400/400 -o '/Users/akskhan/Desktop/Simple WebApp/images/__TRACKED_VAR__.jpg')"
+    ]
+  }
+}
