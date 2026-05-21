@@ -2,7 +2,19 @@
   "permissions": {
     "allow": [
       "Bash(open *)",
-      "Bash(curl -sL https://picsum.photos/seed/__TRACKED_VAR__/400/400 -o '/Users/akskhan/Desktop/Simple WebApp/images/__TRACKED_VAR__.jpg')"
+      "Bash(curl -sL https://picsum.photos/seed/__TRACKED_VAR__/400/400 -o '/Users/akskhan/Desktop/Simple WebApp/images/__TRACKED_VAR__.jpg')",
+      "Bash(python3 *)",
+      "Bash(/Users/akskhan/Desktop/Simple WebApp/resize.sh *)",
+      "Bash(sips -g pixelWidth -g pixelHeight \"01.JPG\")",
+      "Bash(sips -g pixelWidth -g pixelHeight \"10.jpeg\")",
+      "Bash(sips -g pixelWidth -g pixelHeight \"11.jpg\")",
+      "Bash(sips -g pixelWidth -g pixelHeight \"24.jpg\")",
+      "Bash(cp \"/Users/akskhan/Downloads/Funny Kiran/3.jpeg\" \"./3.jpg\")",
+      "Bash(sips -s format jpeg \"3.jpg\" --out \"3.jpg\")",
+      "Bash(sips --resampleWidth 800 \"3.jpg\" --out \"3.jpg\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }
