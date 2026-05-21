@@ -1,0 +1,2 @@
+- [Link to the hosted page](https://akshayk21.github.io/confetti-for-kiran/)
+- https://akshayk21.github.io/confetti-for-kiran/
