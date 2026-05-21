@@ -179,6 +179,7 @@
             width: 100%;
             aspect-ratio: 1;
             object-fit: cover;
+            object-position: top;
         }
 
         .preview-card-info { padding: 0.75rem; }
@@ -255,6 +256,7 @@
             width: 100%;
             aspect-ratio: 1;
             object-fit: cover;
+            object-position: top;
             transition: transform 0.5s ease;
         }
 
@@ -359,8 +361,8 @@
 
         .card-photo img {
             width: 100%;
-            aspect-ratio: 1;
-            object-fit: cover;
+            max-height: 500px;
+            object-fit: contain;
             border-radius: 1.5rem;
         }
 
@@ -540,10 +542,9 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 4.5H18l-3.5 2.5 1.5 4.5L12 12l-4 2.5 1.5-4.5L6 7.5h4.5z"/></svg>
                         Private birthday memory tiles
                     </div>
-                    <h1 class="landing-h1">Kiran at 30</h1>
-                    <p class="landing-desc">30 memories from the people who love you most. Tap a tile to open a photo and read what someone wanted you to remember.</p>
-                    <div class="landing-note">This experience pairs every photo with one heartfelt message, with optional voice notes tucked inside selected cards.</div>
-                    <button class="btn btn-dark" onclick="showScreen('gallery')">Open the tiles</button>
+                    <h1 class="landing-h1">For Kiran, with Love</h1>
+                    <p class="landing-desc">Thirty little windows into the person you are — the dancer, the traveler, the mama, the friend, the chaos-maker, the home-builder, the one who makes people feel loved.</p>
+                    <button class="btn btn-dark" onclick="showScreen('gallery')">Tap a tile to open a memory</button>
                 </section>
                 <section class="landing-preview">
                     <div class="landing-preview-grid" id="previewGrid"></div>
@@ -555,9 +556,8 @@
         <main class="screen" id="screen-gallery">
             <section class="gallery-header">
                 <div>
-                    <div class="gallery-header-label">The tile wall</div>
-                    <h2>Choose a memory</h2>
-                    <p>Each square opens into a paired photo-and-message view, like seeing both sides of a tile together.</p>
+                    <div class="gallery-header-label">Thirty Little Windows</div>
+                    <h2>Every tile holds a photo, a memory, or a little piece of love someone wanted you to keep.</h2>
                 </div>
                 <button class="btn" onclick="showScreen('landing')">Back to start</button>
             </section>
